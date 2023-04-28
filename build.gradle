@@ -16,14 +16,14 @@ apply plugin: 'maven-publish'
 apply plugin: 'org.spongepowered.mixin'
 
 
-version = "3.0.0-hotfix"
+version = "3.1.0"
 group = "net.ludocrypt.musicdr"
 archivesBaseName = "musicdr"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 minecraft {
-	mappings channel: 'official', version: '1.19.2'
+	mappings channel: 'official', version: '1.19.4'
 	runs {
 		client {
 			workingDirectory project.file('run')
@@ -66,13 +66,13 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 dependencies {
-	minecraft 'net.minecraftforge:forge:1.19.2-43.1.34'
+	minecraft 'net.minecraftforge:forge:1.19.4-45.0.49'
 	annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 
 if (System.getProperty("idea.sync.active") == "true") {
 	afterEvaluate {
-		tasks.withType(JavaCompile).all {
+		tasks.withType(JavaCompile).configureEach {
 			it.options.annotationProcessorPath = files()
 		}
 	}
